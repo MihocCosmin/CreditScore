@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+	<div
+		style="width: 100%; font-size: 36px; line-height: 48px; background-color: navy; color: white">
+		Credit Score</div>
+
+	<h:form>
+		<h:panelGrid border="1" columns="2">
+			  <h:commandButton id="btnPrevious" actionListener="#{formPersonalLoanApplicant.previousApplicant}" value="Previous">
+				<f:ajax render = "@form"></f:ajax>
+			  </h:commandButton>
+			  <h:commandButton id="btnNext" actionListener="#{formPersonalLoanApplicant.nextApplicant}" value="Next">
+			    <f:ajax render = "@form"></f:ajax>
+			  </h:commandButton>
+			<h:outputText value="Applicant name"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.name}"></h:inputText>
+			<h:outputText value="Age"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.age}"></h:inputText>
+			<h:outputText value="Education level"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.level}"></h:inputText>
+			<h:outputText value="Occupation"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.occupation}"></h:inputText>
+			<h:outputText value="Living situation"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.situation}"></h:inputText>
+			<h:outputText value="Working Sector"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.sector}"></h:inputText>
+			<h:outputText value="Seniority"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.workingSeniority}"></h:inputText>
+			<h:outputText value="Monthly Income"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.monthlyIncome}"></h:inputText>
+			<h:outputText value="Is Married"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.isMarried}"></h:inputText>
+			<h:outputText value="Has children"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.hasChildren}"></h:inputText>
+			<h:outputText value="Has car"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.hasCar}"></h:inputText>
+			<h:outputText value="Nr. of payments without delay"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.nrOfPaymentsWithoutDelays}"></h:inputText>
+			<h:outputText value="Nr. of delays"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.nrOfDelays}"></h:inputText>
+			<h:outputText value="Debt Amount"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.applicant.amountToBePayed}"></h:inputText>
+			<h:outputText value="Credit Type"></h:outputText>
+			<h:inputText value="#{formPersonalLoanApplicant.applicant.type}"></h:inputText>
+		</h:panelGrid>
+		<h:panelGrid border="1" columns="4">
+			<h:commandButton id="cmdAddApp" value="Add Applicant"
+				actionListener="#{formPersonalLoanApplicant.addApplicant}"></h:commandButton>
+			<h:commandButton id="cmdDelApp" value="Delete Applicant"
+				actionListener="#{formPersonalLoanApplicant.deleteApplicant}"></h:commandButton>
+			<h:commandButton id="cmdSavApp" value="Save Applicant"
+				actionListener="#{formPersonalLoanApplicant.saveApplicant}"></h:commandButton>
+			<h:commandButton id="cmdRefApp" value="Refresh Applicant"
+				actionListener="#{formPersonalLoanApplicant.refreshApplicant}"></h:commandButton>
+		</h:panelGrid>
+		<h:panelGrid border="1" columns="2">
+			<h:outputText value="Credit Score"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.result.creditScore}"></h:inputText>
+			<h:outputText value="Application Accepted"></h:outputText>
+			<h:inputText
+				value="#{formPersonalLoanApplicant.result.loanAccepted}"></h:inputText>
+			<h:commandButton id="cmdAdd" value="Add Score"
+				actionListener="#{formPersonalLoanApplicant.addResult}"></h:commandButton>	
+		</h:panelGrid>
+	</h:form>
+</body>
+</html>

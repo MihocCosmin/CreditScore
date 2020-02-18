@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"	
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+<div style="width:100%;font-size:36px;line-height:48px;background-color:navy;color:white">Commercial Credit</div>
+    
+    <h:form>
+    <h:panelGrid border="1" columns="2">
+        			  <h:commandButton id="btnPrevious" actionListener="#{formCommercialLoanApplicant.previousCompany}" value="Previous">
+				<f:ajax render = "@form"></f:ajax>
+			  </h:commandButton>
+			  <h:commandButton id="btnNext" actionListener="#{formCommercialLoanApplicant.nextCompany}" value="Next">
+			    <f:ajax render = "@form"></f:ajax>
+			  </h:commandButton>
+    	<h:outputText value="Company Name"></h:outputText>
+		<h:inputText value="#{formCommercialLoanApplicant.company.name}"></h:inputText>
+		<h:outputText value="CUI"></h:outputText>
+		<h:inputText value="#{formCommercialLoanApplicant.company.CUI}"></h:inputText>
+		<h:outputText value="Yearly Income"></h:outputText>
+		<h:inputText value="#{formCommercialLoanApplicant.company.yearlyIncome}"></h:inputText>
+		<h:outputText value="Credit Rating"></h:outputText>
+		<h:inputText value="#{formCommercialLoanApplicant.company.rating}"></h:inputText>
+		<h:outputText value="Approved"></h:outputText>
+		<h:inputText value="#{formCommercialLoanApplicant.company.isApproved}"></h:inputText>
+    </h:panelGrid>
+    		<h:panelGrid border="1" columns="4">
+			<h:commandButton id="cmdAddApp" value="Add Company" actionListener="#{formCommercialLoanApplicant.addCompany}"></h:commandButton>
+			<h:commandButton id="cmdDelApp" value="Delete Company" actionListener="#{formCommercialLoanApplicant.deleteCompany}"></h:commandButton>
+			<h:commandButton id="cmdSavApp" value="Save Company" actionListener="#{formCommercialLoanApplicant.saveCompany}"></h:commandButton>
+			<h:commandButton id="cmdRefApp" value="Refresh Company" actionListener="#{formCommercialLoanApplicant.refreshCompany}"></h:commandButton>
+		</h:panelGrid>
+		</h:form>
+</body>
+</html>
