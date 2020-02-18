@@ -1,0 +1,428 @@
+import com.sample.*;
+
+rule "age criteria rejection" salience 2
+when 
+p:PersonalLoanApplicant(age<21)
+then
+System.out.println("Applicant is rejected. Must be older than 21 years old.");
+end
+
+rule "highschool education score" 
+when
+p:PersonalLoanApplicant(level == EducationLevel.HIGHSCHOOL)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "bachelor education score"
+when
+p:PersonalLoanApplicant(level == EducationLevel.BACHELOR)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 50);
+System.out.println(r.getCreditScore());
+end
+
+rule "master education score"
+when
+p:PersonalLoanApplicant(level == EducationLevel.MASTER)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "student score" 
+when
+p:PersonalLoanApplicant(occupation == Occupation.STUDENT)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "employee score"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "retired score"
+when
+p:PersonalLoanApplicant(occupation == Occupation.RETIRED)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "occupation: none score"
+when
+p:PersonalLoanApplicant(occupation == Occupation.NONE)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 0);
+System.out.println(r.getCreditScore());
+end
+
+rule "owns home score"
+when
+p:PersonalLoanApplicant(situation == LivingSituation.OWNER)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 80);
+System.out.println(r.getCreditScore());
+end
+
+rule "lives with rent"
+when
+p:PersonalLoanApplicant(situation == LivingSituation.RENT)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 40);
+System.out.println(r.getCreditScore());
+end
+
+rule "lives at relatives"
+when
+p:PersonalLoanApplicant(situation == LivingSituation.ATRELATIVES)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "working in finance"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, sector == WorkingSector.FINANCE)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 80);
+System.out.println(r.getCreditScore());
+end
+
+rule "working in law"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, sector == WorkingSector.LAW)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 80);
+System.out.println(r.getCreditScore());
+end
+
+rule "working in IT"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, sector == WorkingSector.IT)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 80);
+System.out.println(r.getCreditScore());
+end
+
+rule "working in education"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, sector == WorkingSector.EDUCATION)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "working in healthcare"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, sector == WorkingSector.HEALTHCARE)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "working in other"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, sector == WorkingSector.OTHER)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 40);
+System.out.println(r.getCreditScore());
+end
+
+rule "low working seniority (months)"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, workingSeniority <= 6)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "medium working seniority (months)"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, workingSeniority > 6 && workingSeniority <= 36)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 40);
+System.out.println(r.getCreditScore());
+end
+
+rule "high working seniority (months)"
+when
+p:PersonalLoanApplicant(occupation == Occupation.EMPLOYEE, workingSeniority > 36)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "low income"
+when
+p:PersonalLoanApplicant(monthlyIncome <= 1500.0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "medium income"
+when
+p:PersonalLoanApplicant(monthlyIncome > 1500.0 && monthlyIncome <= 3000.0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 40);
+System.out.println(r.getCreditScore());
+end
+
+rule "high income"
+when
+p:PersonalLoanApplicant(monthlyIncome > 3000.0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "is married"
+when
+p:PersonalLoanApplicant(isMarried == true)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "is not married"
+when
+p:PersonalLoanApplicant(isMarried == false)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 30);
+System.out.println(r.getCreditScore());
+end
+
+rule "has children"
+when
+p:PersonalLoanApplicant(hasChildren == true)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 30);
+System.out.println(r.getCreditScore());
+end
+
+rule "does not have children"
+when
+p:PersonalLoanApplicant(hasChildren == false)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "has car"
+when
+p:PersonalLoanApplicant(hasCar == true)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 60);
+System.out.println(r.getCreditScore());
+end
+
+rule "does not have car"
+when
+p:PersonalLoanApplicant(hasCar == false)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 30);
+System.out.println(r.getCreditScore());
+end
+
+rule"history: no payments without delay"
+when
+p:PersonalLoanApplicant(nrOfPaymentsWithoutDelays == 0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 0);
+System.out.println(r.getCreditScore());
+end
+
+rule"history: low nr. of payments without delay"
+when
+p:PersonalLoanApplicant(nrOfPaymentsWithoutDelays >= 1 && nrOfPaymentsWithoutDelays <= 10)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule"history: high nr. of payments without delay"
+when
+p:PersonalLoanApplicant(nrOfPaymentsWithoutDelays > 10)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 30);
+System.out.println(r.getCreditScore());
+end
+
+rule "history: no delays"
+when
+p:PersonalLoanApplicant(nrOfDelays == 0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 40);
+System.out.println(r.getCreditScore());
+end
+
+rule "history: low nr. of delays"
+when
+p:PersonalLoanApplicant(nrOfDelays >= 1 && nrOfDelays <= 10)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 10);
+System.out.println(r.getCreditScore());
+end
+
+rule "history: high nr. of delays"
+when
+p:PersonalLoanApplicant(nrOfDelays > 10)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 0);
+System.out.println(r.getCreditScore());
+end
+
+rule "history: no debt"
+when
+p:PersonalLoanApplicant(amountToBePayed == 0.0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 40);
+System.out.println(r.getCreditScore());
+end
+
+rule "history: low amount of debt"
+when
+p:PersonalLoanApplicant(amountToBePayed >= 1.0 && amountToBePayed <= 1500.0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 20);
+System.out.println(r.getCreditScore());
+end
+
+rule "history: high amount of debt"
+when
+p:PersonalLoanApplicant(amountToBePayed > 1500.0)
+r:ApplicationResult(applicant == p)
+then
+r.setCreditScore(r.getCreditScore() + 0);
+System.out.println(r.getCreditScore());
+end
+
+
+rule "Reject application for personal credit" salience -2
+when
+p:PersonalLoanApplicant(type == CreditType.PERSONAL)
+r:ApplicationResult(applicant == p, r.getCreditScore() < 200)
+then
+r.setLoanAccepted(false);
+System.out.println("Credits score is: " + r.getCreditScore() + ". Application is rejected.");
+end
+
+rule "Accept application for personal credit" salience -2
+when
+p:PersonalLoanApplicant(type == CreditType.PERSONAL)
+r:ApplicationResult(applicant == p, r.getCreditScore() >= 200)
+then
+r.setLoanAccepted(true);
+System.out.println("Credits score is: " + r.getCreditScore() + ". Application is accepted.");
+end
+
+rule "Reject application for car credit" salience -2
+when
+p:PersonalLoanApplicant(type == CreditType.AUTO) 
+r:ApplicationResult(applicant == p, getCreditScore() < 400)
+then
+r.setLoanAccepted(false);
+System.out.println("Credits score is: " + r.getCreditScore() + ". Application is rejected.");
+end
+
+rule "Accept application for car credit" salience -2
+when
+p:PersonalLoanApplicant(type == CreditType.AUTO) 
+r:ApplicationResult(applicant == p, r.getCreditScore() >= 400)
+then
+r.setLoanAccepted(true);
+System.out.println("Credits score is: " + r.getCreditScore() + ". Application is accepted.");
+end
+
+rule "Reject application for mortgage" salience -2
+when
+p:PersonalLoanApplicant(type == CreditType.MORTGAGE) 
+r:ApplicationResult(applicant == p, r.getCreditScore() < 600)
+then
+r.setLoanAccepted(false);
+System.out.println("Credits score is: " + r.getCreditScore() + ". Application is rejected.");
+end
+
+rule "Accept application for mortgage" salience -2
+when
+p:PersonalLoanApplicant(type == CreditType.MORTGAGE) 
+r:ApplicationResult(applicant == p, r.getCreditScore() >= 600)
+then
+r.setLoanAccepted(true);
+System.out.println("Credits score is: " + r.getCreditScore() + ". Application is accepted.");
+end
+
+rule"very high credit score"
+when
+c:CommercialLoanApplicant(rating == CreditRating.A)
+then
+c.setIsApproved(true);
+System.out.println("Commercial loan is approved.");
+end
+
+rule"high credit score"
+when
+c:CommercialLoanApplicant(rating == CreditRating.B)
+then
+c.setIsApproved(true);
+System.out.println("Commercial loan is approved.");
+end
+
+rule"low credit score" 
+when
+c:CommercialLoanApplicant(rating == CreditRating.C)
+then
+c.setIsApproved(false);
+System.out.println("Commercial loan is rejected.");
+end
+
+rule"very low credit score" 
+when
+c:CommercialLoanApplicant(rating == CreditRating.D)
+then
+c.setIsApproved(false);
+System.out.println("Commercial loan is rejected.");
+end
